@@ -1,1 +1,1 @@
-# BD
+# Bootcamp GO W7 - Bases de datos
