@@ -1,6 +1,8 @@
 -- Uso base de datos `storage`
 USE `my_db`;
 
+-- Elimino tabla wre house si ya existe
+DROP TABLE IF EXISTS `warehouses`;
 -- Crear tabla warehouses donde se almacenan datos de los almacenes de products   
 CREATE TABLE `warehouses` (
   `id` int NOT NULL,
@@ -25,5 +27,5 @@ ALTER TABLE `warehouses`
 -- Se agrega una columna para el id del warehouse a la tabla products
 ALTER TABLE `products` ADD `id_warehouse` INT NOT NULL AFTER `price`;
 
--- Designar el id_warehouse con el valor 1
+-- Designar el id_warehouse con el valor 1 a cada product
 UPDATE `products` SET `id_warehouse` = '1';
