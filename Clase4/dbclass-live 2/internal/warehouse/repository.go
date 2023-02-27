@@ -7,12 +7,12 @@ import (
 )
 
 const (
-	GetReport 	   = "SELECT w.id, w.name, w.address, COUNT(p.warehouse_id) as product_count FROM warehouse as w " +
-					 "LEFT JOIN products as p ON w.id = p.warehouse_id " +
-					 "GROUP BY w.id"
+	GetReport = "SELECT w.id, w.name, w.address, COUNT(p.warehouse_id) as product_count FROM warehouse as w " +
+		"LEFT JOIN products as p ON w.id = p.warehouse_id " +
+		"GROUP BY w.id"
 	GetReportQuery = "SELECT w.id, w.name, w.address, COUNT(p.warehouse_id) as product_count FROM warehouse as w " +
-					 "LEFT JOIN products as p ON w.id = p.warehouse_id " +
-					 "GROUP BY w.id HAVING w.id = ?;"
+		"LEFT JOIN products as p ON w.id = p.warehouse_id " +
+		"GROUP BY w.id HAVING w.id = ?;"
 )
 
 var (
@@ -31,8 +31,10 @@ func NewRepositorySQL(db *sql.DB) Repository {
 type repositorySQL struct {
 	db *sql.DB
 }
+
 func (rp *repositorySQL) GetProductReport(id int) ([]domain.WarehouseReport, error) {
-	var rows *sql.Rows; var err error
+	var rows *sql.Rows
+	var err error
 	if id > 0 {
 		rows, err = rp.db.Query(GetReportQuery, id)
 	} else {
